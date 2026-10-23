@@ -39,13 +39,13 @@ export function FeaturedProjects() {
       )}
       <div className="projects-grid">
         {featured.length
-          ? featured.map((project) => (
-              <Reveal key={project.slug}>
+          ? featured.map((project, index) => (
+              <Reveal key={project.slug} delay={index * 0.08}>
                 <ProjectCard project={project} />
               </Reveal>
             ))
-          : projectSlots.map((slot) => (
-              <Reveal key={slot.id}>
+          : projectSlots.map((slot, index) => (
+              <Reveal key={slot.id} delay={index * 0.08}>
                 <ProjectPlaceholder slot={slot} />
               </Reveal>
             ))}

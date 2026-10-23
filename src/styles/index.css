@@ -2686,3 +2686,706 @@ h3 {
     scroll-behavior: auto !important;
   }
 }
+
+/* Phase 2: a shared, restrained depth and motion language. */
+:root {
+  --pointer-light: #7de9dd1d;
+}
+:root[data-theme="light"] {
+  --pointer-light: #096e6618;
+}
+.interactive-surface {
+  position: relative;
+  transform-style: preserve-3d;
+}
+.surface-light {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 2;
+}
+.interactive-surface:hover > .surface-light {
+  opacity: 1;
+}
+.magnetic {
+  display: inline-flex;
+}
+.word-mask {
+  display: inline-block;
+  overflow: clip;
+  vertical-align: top;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+  margin-inline-end: 0.2em;
+}
+.word-mask:last-child {
+  margin-inline-end: 0;
+}
+.word-mask > span {
+  display: inline-block;
+}
+.kinetic-text {
+  display: inline;
+}
+.hero {
+  padding-top: clamp(75px, 8vw, 125px);
+  column-gap: 42px;
+  isolation: isolate;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -84px 0 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at 76% 35%,
+    color-mix(in srgb, var(--accent) 7%, transparent),
+    transparent 56%
+  );
+  pointer-events: none;
+}
+.hero h1 {
+  font-size: clamp(44px, 5.1vw, 70px);
+  letter-spacing: -0.055em;
+  line-height: 1.06;
+  font-weight: 500;
+  max-width: 640px;
+}
+.hero-greeting {
+  color: var(--muted);
+  font-size: 18px;
+  margin-bottom: 23px;
+}
+.hero-copy .eyebrow {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.hero-description {
+  margin-top: 32px;
+  line-height: 1.85;
+}
+.hero-actions {
+  gap: 16px;
+  margin-top: 34px;
+}
+.hero-art {
+  position: relative;
+  padding: 30px 0;
+}
+.study-scene {
+  width: 100%;
+}
+.interface-study {
+  border-color: transparent;
+  background: transparent;
+  border-radius: 50% 50% 12px 12px;
+  transform-style: preserve-3d;
+}
+.study-aura {
+  position: absolute;
+  inset: 6% -2%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    color-mix(in srgb, var(--accent) 15%, transparent),
+    transparent 68%
+  );
+  animation: ambient-breathe 11s ease-in-out infinite;
+  pointer-events: none;
+}
+.study-beam {
+  position: absolute;
+  inset: 18% 4%;
+  border: 1px solid color-mix(in srgb, var(--accent) 12%, transparent);
+  border-radius: 50%;
+  transform: rotate(-25deg) scaleY(0.72);
+}
+.study-grid {
+  inset: -4%;
+  mask-image: radial-gradient(ellipse, black, transparent 70%);
+}
+.study-card-back {
+  background: linear-gradient(145deg, var(--surface-raised), var(--surface));
+  transform: translateZ(15px) rotate(-12deg) translate(-18px, -10px);
+}
+.study-card-front {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  box-shadow:
+    0 30px 60px #00000030,
+    0 1px 0 color-mix(in srgb, var(--accent) 20%, transparent) inset;
+  animation: layered-float 8s ease-in-out infinite;
+}
+.study-composition {
+  height: 185px;
+  background: radial-gradient(
+    ellipse at 50% 80%,
+    var(--accent-wash),
+    transparent 70%
+  );
+}
+.study-shape {
+  width: 120px;
+  height: 120px;
+  border-radius: 30px;
+}
+.shape-one {
+  animation: shape-turn 24s linear infinite;
+}
+.shape-two {
+  animation: shape-turn 30s linear infinite reverse;
+}
+.study-center {
+  font-size: 70px;
+}
+.orbital-one {
+  border-color: color-mix(in srgb, var(--accent) 23%, transparent);
+}
+.orbital-two {
+  animation: orbit-turn 45s linear infinite;
+}
+.study-cross {
+  opacity: 0.55;
+}
+.study-cursor {
+  bottom: 15%;
+  right: 3%;
+  animation: cursor-drift 9s ease-in-out infinite;
+}
+.study-token {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  box-shadow: 0 15px 25px #00000018;
+  transform: translateZ(65px) rotate(-5deg);
+}
+.study-token svg {
+  color: var(--accent);
+}
+.study-token > span {
+  color: var(--faint);
+  margin-left: 12px;
+  font-size: 8px;
+}
+.token-structure {
+  left: -2%;
+  top: 28%;
+  animation: token-drift 9s ease-in-out infinite;
+}
+.token-interaction {
+  right: -2%;
+  bottom: 29%;
+  animation: token-drift 11s ease-in-out infinite reverse;
+}
+.ambient-control {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 44px;
+  margin: 6px 0 0 auto;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 10px;
+}
+.ambient-control:hover {
+  color: var(--accent);
+}
+.is-paused *,
+.is-paused::before {
+  animation-play-state: paused !important;
+}
+.study-scene > .surface-light {
+  border-radius: 50%;
+}
+@keyframes layered-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 45px) rotate(5deg);
+  }
+  50% {
+    transform: translate3d(0, -12px, 45px) rotate(2deg);
+  }
+}
+@keyframes token-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 65px) rotate(-5deg);
+  }
+  50% {
+    transform: translate3d(3px, -9px, 65px) rotate(-2deg);
+  }
+}
+@keyframes cursor-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 80px) rotate(-5deg);
+  }
+  50% {
+    transform: translate3d(-8px, 5px, 80px) rotate(-1deg);
+  }
+}
+@keyframes shape-turn {
+  from {
+    transform: rotate(-18deg);
+  }
+  to {
+    transform: rotate(342deg);
+  }
+}
+@keyframes orbit-turn {
+  from {
+    transform: rotate(35deg);
+  }
+  to {
+    transform: rotate(395deg);
+  }
+}
+@keyframes ambient-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+.section {
+  padding-top: 120px;
+}
+.section-heading {
+  margin-bottom: 36px;
+}
+.section-heading h2 {
+  font-size: clamp(29px, 3.6vw, 43px);
+  font-weight: 450;
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+}
+.section-heading .eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  margin-bottom: 19px;
+}
+.section-intro {
+  font-size: 14px;
+}
+.project-card {
+  border-radius: 15px;
+  isolation: isolate;
+  box-shadow: 0 12px 32px #0000000a;
+}
+.project-card-body {
+  position: relative;
+  z-index: 3;
+  padding: 30px;
+  transform: translateZ(24px);
+}
+.project-card-meta {
+  font-size: 10px;
+}
+.project-card h3 {
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+.concept-art {
+  height: 285px;
+  transition: background-color 0.4s;
+}
+.concept-stack > div {
+  transition: translate 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.concept-stack > div:nth-child(3) {
+  translate: 0 0;
+}
+.concept-sphere {
+  transition: translate 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.project-card-body h3,
+.project-card-body > p,
+.project-card .text-link svg {
+  transition:
+    translate 0.35s ease,
+    color 0.25s;
+}
+.project-card .project-pending {
+  font-size: 11px;
+}
+.about-section {
+  position: relative;
+}
+.about-grid {
+  gap: 80px;
+  padding-block: 15px 5px;
+}
+.about-bio {
+  font-size: 18px;
+  line-height: 1.9;
+}
+.approach-card {
+  border: 0;
+  border-left: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  padding: 15px 0 15px 40px;
+}
+.approach-card h3 {
+  font-size: 28px;
+  font-weight: 450;
+  line-height: 1.3;
+}
+.approach-card > p:last-of-type {
+  font-size: 14px;
+}
+.approach-line {
+  left: 40px;
+  width: 45px;
+}
+.focus-grid {
+  padding-top: 10px;
+}
+.focus-number {
+  font-size: 11px;
+}
+.focus-grid h3 {
+  font-size: 16px;
+}
+.stack-grid {
+  border-inline: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.stack-item {
+  padding-block: 32px;
+}
+.tool-symbol {
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  background: var(--accent-wash);
+  border-color: transparent;
+}
+.toolkit-note {
+  font-size: 11px;
+}
+.lab-panel {
+  border-radius: 16px;
+  box-shadow: 0 30px 70px #00000012;
+}
+.lab-topbar {
+  background: linear-gradient(100deg, var(--accent-wash), var(--surface) 70%);
+}
+.demo-options button {
+  transition:
+    background-color 0.25s,
+    border-color 0.25s;
+}
+.demo-switch {
+  transition: background-color 0.25s;
+}
+.demo-surface {
+  border-radius: 14px;
+}
+.contact-inner {
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  padding: 70px 0 40px;
+  background: radial-gradient(
+    ellipse at 85% 65%,
+    var(--accent-wash),
+    transparent 60%
+  );
+}
+.contact-inner h2 {
+  font-size: clamp(34px, 5vw, 62px);
+  font-weight: 450;
+  letter-spacing: -0.045em;
+}
+.contact-decoration {
+  font-size: 180px;
+  top: 60px;
+  right: 20px;
+  opacity: 0.2;
+}
+.contact-pending {
+  font-size: 9px;
+}
+.button {
+  position: relative;
+  overflow: hidden;
+  border-radius: 7px;
+  transition:
+    box-shadow 0.25s,
+    background-color 0.25s,
+    border-color 0.25s,
+    transform 0.25s;
+}
+.button-primary {
+  box-shadow: 0 0 0 0 transparent;
+}
+.button:active {
+  transform: scale(0.98);
+}
+.button svg {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.button:hover svg {
+  transform: translate(2px, -2px);
+}
+.desktop-nav a {
+  transition: color 0.25s;
+}
+.desktop-nav a::before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.desktop-nav a:hover::before,
+.desktop-nav a:focus-visible::before {
+  transform: scaleX(1);
+}
+.desktop-nav a.active::after {
+  width: 15px;
+  height: 2px;
+  border-radius: 1px;
+  transform: translateX(-50%);
+  transition: width 0.3s;
+}
+.theme-control {
+  transition: color 0.2s;
+}
+.theme-control:focus-within,
+.theme-control:hover {
+  color: var(--accent);
+}
+.interior-page {
+  animation: none;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .project-card:hover,
+  .project-card:focus-within {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+    box-shadow: 0 24px 45px #00000020;
+  }
+  .project-card:hover .concept-stack > div:nth-child(3) {
+    translate: 5px -10px;
+  }
+  .project-card:hover .concept-stack > div:nth-child(2) {
+    translate: 2px -4px;
+  }
+  .project-card:hover .concept-sphere {
+    translate: 0 -7px;
+  }
+  .project-card:hover .project-card-body h3,
+  .project-card:focus-within .project-card-body h3 {
+    translate: 0 -2px;
+  }
+  .project-card:hover .text-link svg {
+    translate: 3px -3px;
+  }
+  .button-primary:hover {
+    box-shadow: 0 5px 28px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+}
+@media (max-width: 900px) {
+  .hero {
+    column-gap: 28px;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 5.3vw, 54px);
+  }
+  .study-composition {
+    height: 130px;
+  }
+  .study-shape {
+    width: 88px;
+    height: 88px;
+    border-radius: 21px;
+  }
+  .study-center {
+    font-size: 54px;
+  }
+  .study-token {
+    padding: 9px;
+    gap: 6px;
+    font-size: 8px;
+  }
+  .study-token > span {
+    display: none;
+  }
+  .about-grid {
+    gap: 35px;
+  }
+  .about-bio {
+    font-size: 15px;
+  }
+  .approach-card {
+    padding-left: 25px;
+  }
+  .approach-card h3 {
+    font-size: 23px;
+  }
+  .section {
+    padding-top: 85px;
+  }
+  .concept-art {
+    height: 235px;
+  }
+}
+@media (max-width: 600px) {
+  .hero {
+    padding-top: 48px;
+  }
+  .hero h1 {
+    font-size: clamp(37px, 8.7vw, 52px);
+    line-height: 1.08;
+  }
+  .hero-copy .eyebrow {
+    font-size: 9px;
+  }
+  .hero-art {
+    padding: 12px 14px 20px;
+  }
+  .interface-study {
+    aspect-ratio: 1.16;
+  }
+  .study-composition {
+    height: 110px;
+  }
+  .study-token {
+    font-size: 9px;
+  }
+  .token-structure {
+    left: -4%;
+    top: 24%;
+  }
+  .token-interaction {
+    right: -4%;
+    bottom: 26%;
+  }
+  .ambient-control {
+    font-size: 9px;
+    margin-top: 14px;
+  }
+  .section {
+    padding-top: 72px;
+  }
+  .section-heading h2 {
+    font-size: 31px;
+  }
+  .section-heading .eyebrow {
+    font-size: 9px;
+  }
+  .concept-art {
+    height: 245px;
+  }
+  .project-card-body {
+    padding: 25px;
+  }
+  .project-card h3 {
+    font-size: 24px;
+  }
+  .about-grid {
+    gap: 30px;
+  }
+  .approach-card {
+    padding: 12px 0 12px 23px;
+  }
+  .approach-card h3 {
+    font-size: 25px;
+  }
+  .stack-item {
+    padding-block: 25px;
+  }
+  .stack-item p {
+    font-size: 10px;
+  }
+  .tool-symbol {
+    width: 30px;
+    height: 30px;
+  }
+  .demo-options strong {
+    font-size: 10px;
+  }
+  .contact-inner {
+    padding: 45px 0 20px;
+  }
+  .contact-inner h2 {
+    font-size: clamp(31px, 8vw, 43px);
+  }
+  .contact-decoration {
+    font-size: 100px;
+    top: 40px;
+    right: 5px;
+  }
+  .hero-actions {
+    gap: 9px;
+  }
+}
+@media (max-width: 360px) {
+  .hero h1 {
+    font-size: 36px;
+  }
+  .study-composition {
+    height: 88px;
+  }
+  .study-card-title {
+    font-size: 7px;
+  }
+  .study-token {
+    font-size: 8px;
+    padding: 7px;
+  }
+  .study-token svg {
+    width: 12px;
+  }
+  .section-heading h2 {
+    font-size: 29px;
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  .surface-light {
+    display: none !important;
+  }
+  .real-project:hover,
+  .real-project:focus-within,
+  .button:hover {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .button:hover,
+  .button:active,
+  .real-project:hover,
+  .real-project:focus-within {
+    transform: none;
+  }
+}

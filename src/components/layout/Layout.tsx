@@ -3,6 +3,7 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Link, NavLink, Outlet, useLocation } from "react-router";
 import { ThemeControl } from "../../features/theme/ThemeControl";
 import { profile, site } from "../../content/profile";
+import { RouteEntrance } from "../motion/RouteEntrance";
 
 function Navigation({ close }: { close: () => void }) {
   return (
@@ -122,7 +123,9 @@ export function Layout() {
         </nav>
       </header>
       <main id="main-content" tabIndex={-1}>
-        <Outlet />
+        <RouteEntrance key={location.pathname} anchor={Boolean(location.hash)}>
+          <Outlet />
+        </RouteEntrance>
       </main>
       <footer className="site-footer container">
         <Link to="/" className="footer-signature">

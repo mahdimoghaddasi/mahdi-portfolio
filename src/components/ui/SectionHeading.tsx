@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { KineticText } from "../motion/KineticText";
 
 export function SectionHeading({
   number,
@@ -17,7 +18,9 @@ export function SectionHeading({
         <p className="eyebrow">
           <span>{number}</span> {label}
         </p>
-        <h2>{title}</h2>
+        <h2>
+          <KineticText text={title} />
+        </h2>
       </div>
       {children}
     </div>

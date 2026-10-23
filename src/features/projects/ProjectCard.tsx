@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import type { Project } from "../../content/projects";
 import { projectSlots } from "../../content/projects";
 import { profile } from "../../content/profile";
+import { InteractiveSurface } from "../../components/motion/InteractiveSurface";
 
 export function ConceptArtwork({ variant }: { variant: "layers" | "orbit" }) {
   return (
@@ -40,7 +41,7 @@ export function ProjectPlaceholder({
   slot: (typeof projectSlots)[number];
 }) {
   return (
-    <article className="project-card placeholder-card">
+    <InteractiveSurface as="article" className="project-card placeholder-card">
       <ConceptArtwork variant={slot.artwork} />
       <div className="project-card-body">
         <div className="project-card-meta">
@@ -53,14 +54,14 @@ export function ProjectPlaceholder({
           <Clock3 size={14} aria-hidden="true" /> Case study coming soon
         </div>
       </div>
-    </article>
+    </InteractiveSurface>
   );
 }
 
 export function ProjectCard({ project }: { project: Project }) {
   const image = project.images?.[0];
   return (
-    <article className="project-card real-project">
+    <InteractiveSurface as="article" className="project-card real-project">
       {image ? (
         <img
           className="project-cover"
@@ -98,6 +99,6 @@ export function ProjectCard({ project }: { project: Project }) {
           View case study <ArrowUpRight size={15} aria-hidden="true" />
         </Link>
       </div>
-    </article>
+    </InteractiveSurface>
   );
 }

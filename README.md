@@ -95,7 +95,7 @@ scripts/                Optional repository-local Windows Node setup
 .github/workflows/      CI checks only
 ```
 
-The theme uses React context; demo state stays inside the lab. CSS variables define both themes. Motion uses `motion/react` with reduced-motion handling; hero movement is a short, finite animation. No remote fonts, copied screenshots, backend, analytics, authentication, or paid services are required.
+The theme uses React context; demo state stays inside the lab. CSS variables define both themes. The visual motion update adds staggered word entrances, reusable pointer lighting/tilt, layered hero parallax, magnetic primary CTA, and route entrances using the existing `motion/react` dependency. Hero ambient motion has a pause/resume control, pauses outside the viewport, and stops for system reduced motion. Pointer effects run only for a fine mouse pointer with hover and no reduced-motion preference, and update Motion values without React rerenders. No remote fonts, copied screenshots, backend, analytics, authentication, or paid services are required. See [the visual update notes](docs/VISUAL_UPDATE.md).
 
 ## Verification and limits
 
