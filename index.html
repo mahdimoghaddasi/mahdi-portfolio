@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090d15" />
+    <meta
+      name="description"
+      content="Mahdi is a frontend developer focused on React, TypeScript, and thoughtful, interactive web experiences. Explore the portfolio and UI Motion Lab."
+    />
+    <meta property="og:title" content="Mahdi — Frontend Developer" />
+    <meta
+      property="og:description"
+      content="Thoughtful interfaces. Purposeful interactions. A frontend portfolio built with React and TypeScript."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/social-preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Mahdi — Thoughtful interfaces. Purposeful interactions."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mahdi — Frontend Developer" />
+    <meta
+      name="twitter:description"
+      content="Thoughtful interfaces. Purposeful interactions. A frontend portfolio built with React and TypeScript."
+    />
+    <meta name="twitter:image" content="/social-preview.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      (() => {
+        let theme = "system";
+        try {
+          theme = localStorage.getItem("mahdi-theme") || "system";
+        } catch {
+          /* Storage may be blocked. */
+        }
+        const light =
+          theme === "light" ||
+          (theme !== "dark" &&
+            matchMedia("(prefers-color-scheme: light)").matches);
+        document.documentElement.dataset.theme = light ? "light" : "dark";
+        document.documentElement.style.colorScheme = light ? "light" : "dark";
+      })();
+    </script>
+    <title>Mahdi — Frontend Developer</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
